@@ -3,223 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portfolio | โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Student Portfolios | แฟ้มสะสมผลงาน</title>
     <style>
-        body {
-            font-family: 'Sarabun', sans-serif;
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
         }
-        .tab-btn.active {
-            background-color: #1e40af;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif, Tahoma;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #023e8a, #00b4d8);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Tab */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tab-button {
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            background-color: #e0e0e0;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active, .tab-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 50px 20px;
+        }
+
+        .portfolio-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .portfolio-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Grid Display for Images */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-body {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .card-body h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
-<body class="bg-slate-100 text-gray-800 min-h-screen flex flex-col">
+<body>
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-900 text-white text-center py-10 px-4 shadow-md">
-        <h1 class="text-3xl md:text-4xl font-bold mb-2">แฟ้มสะสมผลงาน (Portfolio)</h1>
-        <p class="text-blue-200 text-base md:text-lg">โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
+    <header>
+        <h1>เเฟ้มสะสมผลงาน (PORTFOLIO)</h1>
+        <p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
-        
-        <!-- Tab Navigation Buttons -->
-        <div class="flex justify-center space-x-3 md:space-x-6 mb-8">
-            <button id="btn-person1" onclick="selectPerson('person1')" class="tab-btn active px-6 py-3 rounded-full font-semibold transition-all duration-300 bg-white text-gray-700 shadow-sm hover:bg-blue-50">
-                ณฤดี สุขเกษม
-            </button>
-            <button id="btn-person2" onclick="selectPerson('person2')" class="tab-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 bg-white text-gray-700 shadow-sm hover:bg-blue-50">
-                เมธาวินี บำรุงภักดิ์
-            </button>
+    <div class="tab-container">
+        <button class="tab-button active" onclick="switchTab('student1')">นางสาวเมธาวินี บำรุงภักดิ์</button>
+        <button class="tab-button" onclick="switchTab('student2')">นางสาวณฤดี สุขเกษม</button>
+    </div>
+
+    <div class="container">
+        <!-- Student 1 Portfolio -->
+        <div id="student1" class="portfolio-content active">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #023e8a;">
+                สาขาการศึกษาปฐมวัย - คณะครุศาสตร์
+            </h2>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="image_bda2dd.jpg" alt="หน้าปก - เมธาวินี">
+                    <div class="card-body"><h3>หน้าปก (Cover)</h3></div>
+                </div>
+                <div class="card">
+                    <img src="image_8f6d66.jpg" alt="ประวัติส่วนตัว - เมธาวินี">
+                    <div class="card-body"><h3>ประวัติส่วนตัว (Profile)</h3></div>
+                </div>
+                <div class="card">
+                    <img src="image_da09db.jpg" alt="เหตุผลที่อยากเข้าคณะนี้ - เมธาวินี">
+                    <div class="card-body"><h3>เหตุผลที่อยากเข้าศึกษา (Statement of Purpose)</h3></div>
+                </div>
+                <div class="card">
+                    <img src="image_f6b455.jpg" alt="กิจกรรมที่ภาคภูมิใจ - เมธาวินี">
+                    <div class="card-body"><h3>กิจกรรมที่ภาคภูมิใจ (Activities)</h3></div>
+                </div>
+            </div>
         </div>
 
-        <!-- Section 1: ณฤดี สุขเกษม -->
-        <section id="person1" class="portfolio-content">
-            <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-slate-200 text-center">
-                <h2 class="text-2xl font-bold text-blue-900 mb-1">นางสาวณฤดี สุขเกษม (ดีน่า)</h2>
-                <p class="text-gray-600 font-medium">คณะครุศาสตร์ สาขาวิชาเอกพลศึกษา มหาวิทยาลัยราชภัฏนครศรีธรรมราช</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_291249.jpg', 'หน้าปก - ณฤดี สุขเกษม')">
-                        <img src="image_291249.jpg" alt="หน้าปก ณฤดี สุขเกษม" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">หน้าปก (Cover)</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_291249.jpg</p>
-                        </div>
-                        <a href="image_291249.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
+        <!-- Student 2 Portfolio -->
+        <div id="student2" class="portfolio-content">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #023e8a;">
+                สาขาวิชาเอกพลศึกษา - คณะครุศาสตร์
+            </h2>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="image_d182f5.jpg" alt="หน้าปก - ณฤดี">
+                    <div class="card-body"><h3>หน้าปก (Cover)</h3></div>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_ef4445.jpg', 'Statement of Purpose - ณฤดี สุขเกษม')">
-                        <img src="image_ef4445.jpg" alt="Statement of Purpose ณฤดี" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">เหตุผลที่อยากเข้าคณะนี้</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_ef4445.jpg</p>
-                        </div>
-                        <a href="image_ef4445.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
+                <div class="card">
+                    <img src="image_f910cc.jpg" alt="ประวัติส่วนตัว - ณฤดี">
+                    <div class="card-body"><h3>ประวัติส่วนตัว (Profile)</h3></div>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_341efe.jpg', 'Profile - ณฤดี สุขเกษม')">
-                        <img src="image_341efe.jpg" alt="ประวัติส่วนตัว ณฤดี" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">ประวัติส่วนตัว (Profile)</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_341efe.jpg</p>
-                        </div>
-                        <a href="image_341efe.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
+                <div class="card">
+                    <img src="image_41d9df.jpg" alt="เหตุผลที่อยากเข้าคณะนี้ - ณฤดี">
+                    <div class="card-body"><h3>เหตุผลที่อยากเข้าศึกษา (Statement of Purpose)</h3></div>
                 </div>
-
-                <!-- Card 4 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_605288.jpg', 'Activities SC - ณฤดี สุขเกษม')">
-                        <img src="image_605288.jpg" alt="กิจกรรมสภานักเรียน ณฤดี" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">กิจกรรมสภานักเรียน</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_605288.jpg</p>
-                        </div>
-                        <a href="image_605288.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
+                <div class="card">
+                    <img src="image_8f6d66.jpg" alt="กิจกรรมสภานักเรียน - ณฤดี">
+                    <div class="card-body"><h3>กิจกรรมของสภานักเรียน (Activities SC)</h3></div>
                 </div>
             </div>
-        </section>
-
-        <!-- Section 2: เมธาวินี บำรุงภักดิ์ -->
-        <section id="person2" class="portfolio-content hidden">
-            <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-slate-200 text-center">
-                <h2 class="text-2xl font-bold text-blue-900 mb-1">นางสาวเมธาวินี บำรุงภักดิ์ (ใบเฟิร์น)</h2>
-                <p class="text-gray-600 font-medium">คณะครุศาสตร์ สาขาการศึกษาปฐมวัย มหาวิทยาลัยราชภัฏนครศรีธรรมราช</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_979902.jpg', 'หน้าปก - เมธาวินี บำรุงภักดิ์')">
-                        <img src="image_979902.jpg" alt="หน้าปก เมธาวินี บำรุงภักดิ์" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">หน้าปก (Cover)</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_979902.jpg</p>
-                        </div>
-                        <a href="image_979902.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_7d2d64.jpg', 'Profile - เมธาวินี บำรุงภักดิ์')">
-                        <img src="image_7d2d64.jpg" alt="ประวัติส่วนตัว เมธาวินี" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">ประวัติส่วนตัว (Profile)</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_7d2d64.jpg</p>
-                        </div>
-                        <a href="image_7d2d64.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_2aac92.jpg', 'Statement of Purpose - เมธาวินี บำรุงภักดิ์')">
-                        <img src="image_2aac92.jpg" alt="สาเหตุที่อยากเข้า คณะครุศาสตร์" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">สาเหตุที่อยากเข้าคณะนี้</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_2aac92.jpg</p>
-                        </div>
-                        <a href="image_2aac92.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between hover:shadow-lg transition">
-                    <div class="cursor-pointer overflow-hidden bg-gray-50" onclick="openModal('image_4cd8c0.jpg', 'Activities - เมธาวินี บำรุงภักดิ์')">
-                        <img src="image_4cd8c0.jpg" alt="กิจกรรมที่ภาคภูมิใจ เมธาวินี" class="w-full h-auto object-cover hover:scale-105 transition duration-300" loading="lazy">
-                    </div>
-                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-blue-900 text-lg mb-1">กิจกรรมที่ภาคภูมิใจ</h3>
-                            <p class="text-xs text-gray-500">ไฟล์: image_4cd8c0.jpg</p>
-                        </div>
-                        <a href="image_4cd8c0.jpg" download class="mt-4 block text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-1.5 rounded-lg text-sm transition">ดาวน์โหลดรูป</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-800 text-slate-400 text-center py-6 border-t border-slate-700">
-        <p class="text-sm">&copy; 2026 Student Portfolio Project | โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
-    </footer>
-
-    <!-- Image Modal Zoom (ป๊อบอัพเมื่อกดดูรูปภาพเต็ม) -->
-    <div id="imageModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4" onclick="closeModal()">
-        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-2xl font-bold bg-gray-800/80 hover:bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center">&times;</button>
-            <img id="modalImg" src="" alt="Zoomed view" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl">
-            <p id="modalCaption" class="text-white mt-3 font-medium text-center"></p>
         </div>
     </div>
 
-    <!-- JavaScript Functionality -->
+    <footer>
+        <p>© Portfolio Website | สร้างด้วย HTML & CSS สำหรับ GitHub Pages</p>
+    </footer>
+
     <script>
-        function selectPerson(personId) {
-            // Hide all portfolio sections
-            document.querySelectorAll('.portfolio-content').forEach(el => {
-                el.classList.add('hidden');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        function switchTab(studentId) {
+            // Hide all portfolio content
+            const contents = document.querySelectorAll('.portfolio-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-            // Show selected section
-            document.getElementById(personId).classList.remove('hidden');
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
 
-            // Set current button to active
-            document.getElementById('btn-' + personId).classList.add('active');
-        }
-
-        function openModal(imgSrc, caption) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImg');
-            const modalCaption = document.getElementById('modalCaption');
-            
-            modalImg.src = imgSrc;
-            modalCaption.textContent = caption;
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('imageModal').classList.add('hidden');
+            // Show selected student content and set button active
+            document.getElementById(studentId).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
+
 </body>
 </html>
