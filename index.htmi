@@ -1,1 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            background-color: #e0e0e0;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #2a5298;
+            color: white;
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.3);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+        .portfolio-section {
+            display: none;
+        }
+        .portfolio-section.active {
+            display: block;
+        }
+        .profile-header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .profile-header h2 {
+            color: #1e3c72;
+            font-size: 1.8rem;
+        }
+        .profile-header p {
+            color: #666;
+            font-weight: 600;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-title {
+            font-weight: 700;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #e2e8f0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>แฟ้มสะสมผลงาน (Portfolio)</h1>
+        <p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('person1')">ณฤดี สุขเกษม</button>
+        <button class="tab-btn" onclick="switchTab('person2')">เมธาวินี บำรุงภักดิ์</button>
+    </div>
+
+    <div class="container">
+        <!-- บุคคลที่ 1: ณฤดี สุขเกษม -->
+        <section id="person1" class="portfolio-section active">
+            <div class="profile-header">
+                <h2>นางสาวณฤดี สุขเกษม (ดีน่า)</h2>
+                <p>สาขาวิชาเอกพลศึกษา คณะครุศาสตร์ มหาวิทยาลัยราชภัฏนครศรีธรรมราช</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="image_291249.jpg" alt="หน้าปก ณฤดี สุขเกษม">
+                    <div class="card-content">
+                        <div class="card-title">หน้าปก (Cover Page)</div>
+                        <p>แฟ้มสะสมผลงาน สาขาวิชาเอกพลศึกษา</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_ef4445.jpg" alt="เหตุผลที่อยากเข้าคณะนี้ ณฤดี">
+                    <div class="card-content">
+                        <div class="card-title">Statement of Purpose</div>
+                        <p>เหตุผลและความตั้งใจในการศึกษาต่อคณะครุศาสตร์ สาขาวิชาเอกพลศึกษา</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_341efe.jpg" alt="ประวัติส่วนตัว ณฤดี">
+                    <div class="card-content">
+                        <div class="card-title">Profile (ประวัติส่วนตัว)</div>
+                        <p>ข้อมูลส่วนตัว ทักษะความสามารถพิเศษ งานอดิเรก และช่องทางการติดต่อ</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_605288.jpg" alt="กิจกรรมสภานักเรียน ณฤดี">
+                    <div class="card-content">
+                        <div class="card-title">Activities SC</div>
+                        <p>กิจกรรมของสภานักเรียนและการเข้าร่วมกิจกรรมต่าง ๆ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- บุคคลที่ 2: เมธาวินี บำรุงภักดิ์ -->
+        <section id="person2" class="portfolio-section">
+            <div class="profile-header">
+                <h2>นางสาวเมธาวินี บำรุงภักดิ์ (ใบเฟิร์น)</h2>
+                <p>สาขาการศึกษาปฐมวัย คณะครุศาสตร์ มหาวิทยาลัยราชภัฏนครศรีธรรมราช</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="image_979902.jpg" alt="หน้าปก เมธาวินี บำรุงภักดิ์">
+                    <div class="card-content">
+                        <div class="card-title">หน้าปก (Cover Page)</div>
+                        <p>แฟ้มสะสมผลงาน สาขาการศึกษาปฐมวัย</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_7d2d64.jpg" alt="ประวัติส่วนตัว เมธาวินี">
+                    <div class="card-content">
+                        <div class="card-title">Profile (ประวัติส่วนตัว)</div>
+                        <p>ข้อมูลส่วนตัว ครอบครัว คติประจำใจ และช่องทางการติดต่อ</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_2aac92.jpg" alt="สาเหตุที่อยากเข้า คณะครุศาสตร์ เมธาวินี">
+                    <div class="card-content">
+                        <div class="card-title">Statement of Purpose</div>
+                        <p>แรงบันดาลใจและสาเหตุที่อยากเข้าศึกษาต่อสาขาการศึกษาปฐมวัย</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="image_4cd8c0.jpg" alt="กิจกรรมที่ภาคภูมิใจ เมธาวินี">
+                    <div class="card-content">
+                        <div class="card-title">Activities</div>
+                        <p>กิจกรรมที่ภาคภูมิใจและการฝึกประสบการณ์ทางวิชาชีพ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Student Portfolio Website | โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
+    </footer>
+
+    <script>
+        function switchTab(personId) {
+            // ซ่อนทุก section
+            const sections = document.querySelectorAll('.portfolio-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // ลบสถานะ active จากปุ่มทั้งหมด
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // แสดง section และเปลี่ยนปุ่มที่เลือกเป็น active
+            document.getElementById(personId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
